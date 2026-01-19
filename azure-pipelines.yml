@@ -39,3 +39,10 @@ steps:
     azureSubscription: 'Suscripción 1(2eabbc77-bdf5-4d85-8f86-0738b59fa7a8)'
     command: 'publish'
     publishWebProjects: true
+
+- task: PublishBuildArtifacts@1
+  displayName: Publish Artifact
+  condition: succeededOrFailed()
+  inputs:
+    PathtoPublish: $(build.artifactstagingdirectory)
+    TargetPath: '\\my\share\$(Build.DefinitionName)\$(Build.BuildNumber)'
